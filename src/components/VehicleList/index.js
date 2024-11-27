@@ -15,7 +15,7 @@ export default function VehicleList() {
   }
 
   if (vehicles) {
-    console.log("vehicles = ", vehicles)
+    console.log('vehicles = ', vehicles);
   }
 
   return (

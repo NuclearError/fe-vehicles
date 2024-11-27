@@ -27,6 +27,6 @@ export const getData = async () => {
     );
     return vehicleDetails.filter(Boolean);
   } catch (error) {
-    throw error;
+    throw new Error(`Error fetching vehicle data: ${error}`);
   }
-}
+};
