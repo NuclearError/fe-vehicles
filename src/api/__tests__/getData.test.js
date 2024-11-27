@@ -1,9 +1,9 @@
-import getData from '..';
+import { getData } from '../getData';
 import { request } from '../helpers';
 
 jest.mock('../helpers');
 
-describe.skip('getData Tests', () => {
+describe('getData', () => {
   const safelyCallApi = async () => {
     try {
       return await getData();
@@ -38,6 +38,7 @@ describe.skip('getData Tests', () => {
     expect(request).toBeCalledWith('/api/vehicle_xj.json');
   });
 
+  // TODO "should ignore" test passed even though code hadn't been written
   it('Should ignore failed API calls during traversing', () => {
     request.mockResolvedValueOnce([{ apiUrl: '/api/vehicle_ftype.json' }, { apiUrl: '/api/vehicle_xj.json' }]);
     request.mockResolvedValueOnce({ id: 'ftype', price: '£36,000' });
