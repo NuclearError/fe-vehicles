@@ -10,7 +10,7 @@ export const request = async (apiUrl) => {
   try {
     const response = await fetch(apiUrl);
     if (!response.ok) {
-      throw new Error(`HTTP error: ${response.status}`)
+      throw new Error(`HTTP ${response.status}`)
     }
     const data = await response.json();
     return data;

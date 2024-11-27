@@ -5,6 +5,7 @@ import useData from '../useData';
 
 jest.mock('../useData');
 
+// TODO this passes even though no code has been written yet (because of mocking and because the tests don't test all that much)
 describe('<VehicleList /> Tests', () => {
   it('Should show loading state if it not falsy', () => {
     useData.mockReturnValue([true, 'An error occurred', 'results']);
