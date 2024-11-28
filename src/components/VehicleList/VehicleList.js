@@ -2,8 +2,7 @@ import React from 'react';
 import { useData } from './useData';
 import './style.scss';
 
-export default function VehicleList() {
-  // eslint-disable-next-line no-unused-vars
+export const VehicleList = () => {
   const [loading, error, vehicles] = useData();
 
   if (loading) {
