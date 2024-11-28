@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import { request } from './helpers';
+import { request, isVehicleDataValid, mergeVehicleData } from './helpers';
 
 /**
  * Pull vehicles information
@@ -10,31 +10,19 @@ export const getData = async () => {
   try {
     const vehicles = await request('/api/vehicles.json');
 
+    // TODO double check if this is overkill
     if (!Array.isArray(vehicles)) {
       throw new Error('Invalid data response, expected array');
     }
 
     const vehicleDetails = await Promise.all(
       vehicles.map(async (vehicle) => {
-        if (!vehicle.apiUrl) return null;
+        if (!isVehicleDataValid(vehicle)) {
+          return null;
+        }
         try {
           const details = await request(vehicle.apiUrl);
-
-          if (details.price) {
-            return {
-              id: vehicle.id,
-              modelYear: vehicle.modelYear,
-              media: vehicle.media,
-              description: details.description,
-              price: details.price,
-              passengers: details.meta?.passengers,
-              drivetrain: details.meta?.drivetrain,
-              bodystyles: details.meta?.bodystyles,
-              emissions: details.meta?.emissions?.template?.replace('$value', details.meta?.emissions?.value),
-            };
-          }
-          return null;
-
+          return mergeVehicleData(vehicle, details);
         } catch {
           return null;
         }
