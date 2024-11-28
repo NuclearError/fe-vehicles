@@ -1,5 +1,5 @@
 import React from 'react';
-import useData from './useData';
+import { useData } from './useData';
 import './style.scss';
 
 export default function VehicleList() {
