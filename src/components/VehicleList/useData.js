@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { getData } from '../../api/getData';
 
-// TODO add unit tests
-
 export const useData = () => {
   const [vehicles, setVehicles] = useState([]);
   const [loading, setLoading] = useState(true);
