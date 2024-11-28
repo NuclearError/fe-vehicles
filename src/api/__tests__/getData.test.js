@@ -4,6 +4,16 @@ import { request } from '../helpers';
 jest.mock('../helpers');
 
 describe('getData', () => {
+
+  beforeEach(() => {
+    jest.spyOn(console, 'error');
+    console.error.mockImplementation(() => null);
+  });
+
+  afterEach(() => {
+    console.error.mockRestore();
+  });
+
   const safelyCallApi = async () => {
     try {
       return await getData();
