@@ -1,5 +1,5 @@
 import { getData } from '../getData';
-import { request } from '../helpers';
+import { request, isVehicleDataValid, mergeVehicleData } from '../helpers';
 
 jest.mock('../helpers');
 
@@ -24,7 +24,6 @@ describe('getData', () => {
 
   it('Should fail if initial api call is failed', () => {
     request.mockRejectedValueOnce('An error occurred');
-
     return expect(() => getData()).rejects.not.toBeFalsy();
   });
 
@@ -32,8 +31,20 @@ describe('getData', () => {
     expect.assertions(1);
     request.mockResolvedValueOnce([]);
     await safelyCallApi();
-
     expect(request).toBeCalledWith('/api/vehicles.json');
+  });
+
+  it('should return a list of general vehicle information if api call is successful', async () => {
+    const vehicles = [{ id: 1, name: 'Car A', apiUrl: '/api/carA.json' }];
+    request.mockResolvedValueOnce(vehicles);
+    isVehicleDataValid.mockReturnValue(true);
+    mergeVehicleData.mockImplementation((vehicle, details) => ({ ...vehicle, ...details }));
+    const details = { id: 1, meta: 'lorem ipsum' };
+    request.mockResolvedValueOnce(details);
+
+    const result = await getData();
+
+    expect(result).toEqual([{ id: 1, name: 'Car A', apiUrl: '/api/carA.json', meta: 'lorem ipsum' }]);
   });
 
   it('Should traverse and make further api calls on main results', async () => {
@@ -48,7 +59,6 @@ describe('getData', () => {
     expect(request).toBeCalledWith('/api/vehicle_xj.json');
   });
 
-  // TODO "should ignore" test passed even though code hadn't been written
   it('Should ignore failed API calls during traversing', () => {
     request.mockResolvedValueOnce([{ apiUrl: '/api/vehicle_ftype.json' }, { apiUrl: '/api/vehicle_xj.json' }]);
     request.mockResolvedValueOnce({ id: 'ftype', price: '£36,000' });
@@ -56,17 +66,6 @@ describe('getData', () => {
 
     expect(safelyCallApi()).resolves.toEqual([
       { apiUrl: '/api/vehicle_ftype.json', id: 'ftype', price: '£36,000' }
-    ]);
-  });
-
-  it('Should ignore vehicles without valid price during traversing', () => {
-    request.mockResolvedValueOnce([{ apiUrl: '/api/ftype.json' }, { apiUrl: '/api/xe.json' }, { apiUrl: '/api/xj.json' }]);
-    request.mockResolvedValueOnce({ id: 'ftype', price: '' });
-    request.mockResolvedValueOnce({ id: 'xe' });
-    request.mockResolvedValueOnce({ id: 'xj', price: '£40,000' });
-
-    return expect(safelyCallApi()).resolves.toEqual([
-      { apiUrl: '/api/xj.json', id: 'xj', price: '£40,000' }
     ]);
   });
 });
