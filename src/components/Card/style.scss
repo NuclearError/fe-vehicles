@@ -58,10 +58,64 @@
   &__CardText {
     flex: 1;
     box-shadow: 0 1px 4px 0 rgba(1, 1, 1, .25); // inspired by https://www.landrover.co.uk/ header
+    padding: 30px 35px;
 
     @media (min-width: 768px) {
       flex: 0 0 auto;
       box-shadow: none;
+      padding: 20px 0 7.5px;
+      text-align: center;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 25px 0 20px;
+    }
+
+    &Price,
+    &Para {
+      color: #4a4f54;
+      font-family: AvenirNext, Futura, Arial, Helvetica, sans-serif;
+      font-weight: 400;
+      font-size: 16px;
+
+      @media (min-width: 768px) {
+        font-size: 12px;
+      }
+    }
+
+    &Heading {
+      margin: 0 0 5px;
+      color: #0c121c;
+      font-size: 21px;
+      font-family: LandRoverWeb-Bold, 'Trebuchet MS', Arial, Helvetica, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+
+      @media (min-width: 768px) {
+        margin: 0 0 15px;
+        padding: 2.5px 0;
+        display: inline-block;
+        border-top: 1px solid;
+        border-bottom: 1px solid;
+      }
+    }
+
+    &Price {
+      margin: 0 0 15px;
+      letter-spacing: 2px;
+
+      @media (min-width: 768px) {
+        margin: 0 0 10px;
+      }
+
+      @media (min-width: 1024px) {
+        margin: 0 0 5px;
+      }
+    }
+
+    &Para {
+      margin: 0;
+      letter-spacing: 1px;
     }
   }
 }

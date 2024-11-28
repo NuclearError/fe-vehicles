@@ -2,8 +2,8 @@ import React from 'react';
 import './style.scss';
 
 import { CardImage } from './CardImage';
-import { Heading } from '../Heading/Heading';
-import { Price } from '../Price/Price';
+import { Heading } from './Heading';
+import { Price } from './Price';
 
 export const Card = ({ vehicle }) => {
 
@@ -15,7 +15,7 @@ export const Card = ({ vehicle }) => {
       <div className='VehicleList__CardText'>
         <Heading>{media[0].name}</Heading>
         <Price price={price} />
-        <p>The pinnacle of refined capability</p>
+        <p className='VehicleList__CardTextPara'>The pinnacle of refined capability</p>
       </div>
     </li>
   );
