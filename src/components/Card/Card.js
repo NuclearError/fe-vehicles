@@ -12,9 +12,11 @@ export const Card = ({ vehicle }) => {
   return (
     <li data-testid={`card-${id}`} className='VehicleList__Card'>
       <CardImage id={id} modelYear={modelYear} />
-      <Heading>{media[0].name}</Heading>
-      <Price price={price} />
-      <p>The pinnacle of refined capability</p>
+      <div className='VehicleList__CardText'>
+        <Heading>{media[0].name}</Heading>
+        <Price price={price} />
+        <p>The pinnacle of refined capability</p>
+      </div>
     </li>
   );
 }

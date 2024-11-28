@@ -17,7 +17,7 @@ export const CardImage = ({ id, modelYear }) => {
         In real circumstances we would likely use many source elements, 
         mapping over a range of images coming from a CDN
       */}
-      <source srcset={`/images/16x9/${id}_${modelYear}.jpg`} media="(min-width: 768px)" />
+      <source srcSet={`/images/16x9/${id}_${modelYear}.jpg`} media="(min-width: 768px)" />
       <img src={`/images/1x1/${id}_${modelYear}.jpg`} />
     </picture>
   </div>
