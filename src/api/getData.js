@@ -19,7 +19,22 @@ export const getData = async () => {
         if (!vehicle.apiUrl) return null;
         try {
           const details = await request(vehicle.apiUrl);
-          return details.price ? { ...vehicle, ...details } : null;
+
+          if (details.price) {
+            return {
+              id: vehicle.id,
+              modelYear: vehicle.modelYear,
+              media: vehicle.media,
+              description: details.description,
+              price: details.price,
+              passengers: details.meta?.passengers,
+              drivetrain: details.meta?.drivetrain,
+              bodystyles: details.meta?.bodystyles,
+              emissions: details.meta?.emissions?.template?.replace('$value', details.meta?.emissions?.value),
+            };
+          }
+          return null;
+
         } catch {
           return null;
         }
