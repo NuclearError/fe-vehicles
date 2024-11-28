@@ -1,5 +1,3 @@
-// TODO write unit tests for any helper functions
-
 /**
  * A utility function to make a network api call
  *
@@ -55,4 +53,4 @@ export const mergeVehicleData = (vehicle, details) => {
     bodystyles: details.meta?.bodystyles,
     emissions: details.meta?.emissions?.template?.replace('$value', details.meta?.emissions?.value),
   };
-}
+};

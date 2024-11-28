@@ -4,7 +4,6 @@ import { request, isVehicleDataValid, mergeVehicleData } from '../helpers';
 jest.mock('../helpers');
 
 describe('getData', () => {
-
   beforeEach(() => {
     jest.spyOn(console, 'error');
     console.error.mockImplementation(() => null);
@@ -44,7 +43,9 @@ describe('getData', () => {
 
     const result = await getData();
 
-    expect(result).toEqual([{ id: 1, name: 'Car A', apiUrl: '/api/carA.json', meta: 'lorem ipsum' }]);
+    expect(result).toEqual([{
+      id: 1, name: 'Car A', apiUrl: '/api/carA.json', meta: 'lorem ipsum'
+    }]);
   });
 
   it('Should traverse and make further api calls on main results', async () => {

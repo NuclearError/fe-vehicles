@@ -34,4 +34,4 @@ export const useData = () => {
   }, []);
 
   return [loading, error, vehicles];
-}
+};

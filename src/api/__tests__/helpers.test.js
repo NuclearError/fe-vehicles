@@ -4,7 +4,6 @@ global.fetch = jest.fn();
 
 describe('Helpers', () => {
   describe('request', () => {
-
     beforeEach(() => {
       jest.spyOn(console, 'error');
       console.error.mockImplementation(() => null);
@@ -49,14 +48,24 @@ describe('Helpers', () => {
 
   describe('isVehicleDataValid', () => {
     it('should return true for vehicles with valid data', () => {
-      const vehicle = { id: 1, modelYear: 2020, media: {}, apiUrl: '/carA' };
+      const vehicle = {
+        id: 1, modelYear: 2020, media: {}, apiUrl: '/carA'
+      };
       expect(isVehicleDataValid(vehicle)).toBe(true);
-    })
+    });
     test.each([
-      { id: 1, modelYear: 2020, media: {}, apiUrl: undefined },
-      { id: 2, modelYear: 2020, apiUrl: '/carA', media: undefined },
-      { id: 3, media: {}, apiUrl: '/carB', modelYear: undefined },
-      { modelyear: 2020, media: {}, apiUrl: '/carC', id: undefined },
+      {
+        id: 1, modelYear: 2020, media: {}, apiUrl: undefined
+      },
+      {
+        id: 2, modelYear: 2020, apiUrl: '/carA', media: undefined
+      },
+      {
+        id: 3, media: {}, apiUrl: '/carB', modelYear: undefined
+      },
+      {
+        modelyear: 2020, media: {}, apiUrl: '/carC', id: undefined
+      },
       {},
     ])('should return false for vehicles with missing id, modelYear, media, or apiUrl', (vehicle) => {
       expect(isVehicleDataValid(vehicle)).toBe(false);
@@ -67,11 +76,11 @@ describe('Helpers', () => {
     const mockVehicle = { id: 1, modelYear: 2020, media: {} };
     const mockDetails = {
       description: 'Lorem ipsum',
-      price: "£65,100",
+      price: '£65,100',
       meta: {
         passengers: 4,
-        drivetrain: ["A", "B"],
-        "bodystyles": ["lorem", "ipsum"],
+        drivetrain: ['A', 'B'],
+        bodystyles: ['lorem', 'ipsum'],
         emissions: {
           template: '$value g/km',
           value: 120,
@@ -97,7 +106,7 @@ describe('Helpers', () => {
         passengers,
         drivetrain,
         bodystyles,
-        emissions: "120 g/km"
+        emissions: '120 g/km'
       });
     });
     it('should handle missing optional data gracefully', () => {
@@ -108,7 +117,7 @@ describe('Helpers', () => {
           bodystyles: undefined,
           emissions: undefined,
         },
-      }
+      };
       const { description, price } = mockDetails;
       const result = mergeVehicleData(mockVehicle, mockDetailsWithMissingInfo);
 
@@ -124,4 +133,3 @@ describe('Helpers', () => {
     });
   });
 });
-

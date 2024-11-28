@@ -9,7 +9,6 @@ export const getData = async () => {
   try {
     const vehicles = await request('/api/vehicles.json');
 
-    // TODO double check if this is overkill
     if (!Array.isArray(vehicles)) {
       throw new Error('Invalid data response, expected array');
     }
