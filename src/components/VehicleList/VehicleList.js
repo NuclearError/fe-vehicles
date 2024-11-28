@@ -2,6 +2,8 @@ import React from 'react';
 import { useData } from './useData';
 import './style.scss';
 
+import { Card } from "../Card/Card";
+
 export const VehicleList = () => {
   const [loading, error, vehicles] = useData();
 
@@ -13,31 +15,13 @@ export const VehicleList = () => {
     return <div data-testid="error">{error}</div>;
   }
 
-  if (vehicles) {
-    console.log('vehicles = ', vehicles);
-  }
+  console.log('vehicles = ', vehicles);
 
-  return (
-    <div data-testid="results">
-      <p>List of vehicles will be displayed here</p>
-      <p>
-        Visit
-        <a href="/api/vehicles.json" target="_blank"> /api/vehicles.json</a>
-        {' '}
-        (main endpoint)
-      </p>
-      <p>
-        Visit
-        <a href="/api/vehicle_fpace.json" target="_blank">/api/vehicle_fpace.json</a>
-        {' '}
-        (detail endpoint - apiUrl)
-      </p>
-      <p>
-        Visit
-        <a href="/api/vehicle_xf.json" target="_blank">/api/vehicle_xf.json</a>
-        {' '}
-        (vehicle without any price)
-      </p>
-    </div>
-  );
+  return !!vehicles &&
+    <ul data-testid="results" className='VehicleList'>
+      {vehicles.map(vehicle =>
+        <Card key={`card-${vehicle.id}`} vehicle={vehicle} />
+      )}
+    </ul>
+    ;
 }

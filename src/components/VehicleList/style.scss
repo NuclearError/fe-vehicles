@@ -1,3 +1,10 @@
+$sm-breakpoint: 768px;
+$md-breakpoint: 1024px;
+
 .VehicleList {
   width: 100%;
+  border: 1px solid red;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
