@@ -15,6 +15,7 @@ $md-breakpoint: 1024px;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: stretch;
   }
 
   @media (min-width: 1024px) {

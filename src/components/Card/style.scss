@@ -118,4 +118,38 @@
       letter-spacing: 1px;
     }
   }
+
+  &__CardDetails {
+    border: 1px solid red;
+
+    & summary {
+      list-style: none; // chrome
+
+      &::-webkit-details-marker {
+        display: none; // safari
+      }
+    }
+
+    &Content {
+      border: 1px solid blue;
+    }
+
+    &Para {
+      &--highlight {
+        font-style: italic;
+      }
+    }
+
+    &List {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &ListItem {
+      color: purple;
+      text-transform: uppercase;
+    }
+
+  }
 }

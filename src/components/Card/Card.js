@@ -4,10 +4,11 @@ import './style.scss';
 import { CardImage } from './CardImage';
 import { Heading } from './Heading';
 import { Price } from './Price';
+import { CardDetails } from './CardDetails';
 
 export const Card = ({ vehicle }) => {
 
-  const { id, modelYear, media, price } = vehicle;
+  const { id, modelYear, media, price, description, bodystyles, emissions } = vehicle;
 
   return (
     <li data-testid={`card-${id}`} className='VehicleList__Card'>
@@ -16,6 +17,7 @@ export const Card = ({ vehicle }) => {
         <Heading>{media[0].name}</Heading>
         <Price price={price} />
         <p className='VehicleList__CardTextPara'>The pinnacle of refined capability</p>
+        <CardDetails description={description} bodystyles={bodystyles} emissions={emissions} />
       </div>
     </li>
   );
