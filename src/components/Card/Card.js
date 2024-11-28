@@ -1,13 +1,20 @@
 import React from 'react';
 import './style.scss';
 
+import { CardImage } from './CardImage';
+import { Heading } from '../Heading/Heading';
+import { Price } from '../Price/Price';
+
 export const Card = ({ vehicle }) => {
 
-  const { id } = vehicle;
+  const { id, modelYear, media, price } = vehicle;
 
   return (
-    <li className='VehicleList__card'>
-      {id}
+    <li data-testid={`card-${id}`} className='VehicleList__Card'>
+      <CardImage id={id} modelYear={modelYear} />
+      <Heading>{media[0].name}</Heading>
+      <Price price={price} />
+      <p>The pinnacle of refined capability</p>
     </li>
   );
 }

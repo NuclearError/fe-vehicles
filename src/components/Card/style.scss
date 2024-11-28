@@ -1,5 +1,9 @@
 .VehicleList {
-  &__card {
+  &__Card {
     border: 1px solid blue;
+  }
+
+  &__CardImage {
+    border: 1px solid purple;
   }
 }
