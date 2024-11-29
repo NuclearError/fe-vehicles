@@ -2,7 +2,7 @@ import React from 'react';
 import { useData } from './useData';
 import './style.scss';
 
-import { Card } from "../Card/Card";
+import { Card } from '../Card/Card';
 
 export const VehicleList = () => {
   const [loading, error, vehicles] = useData();
@@ -15,11 +15,10 @@ export const VehicleList = () => {
     return <div data-testid="error">{error}</div>;
   }
 
-  return !!vehicles &&
-    <ul data-testid="results" className='VehicleList'>
-      {vehicles.map(vehicle =>
-        <Card key={`card-${vehicle.id}`} vehicle={vehicle} />
-      )}
+  return !!vehicles
+    && (
+    <ul data-testid="results" className="VehicleList">
+      {vehicles.map((vehicle) => <Card key={`card-${vehicle.id}`} vehicle={vehicle} />)}
     </ul>
-    ;
-}
+    );
+};
