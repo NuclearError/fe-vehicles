@@ -2,20 +2,20 @@ $sm-breakpoint: 768px;
 $md-breakpoint: 1024px;
 
 .VehicleList {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  align-items: center;
 
   display: flex;
   flex-direction: column;
-  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
 
   @media (min-width: 768px) {
+    align-items: stretch;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: stretch;
   }
 
   @media (min-width: 1024px) {

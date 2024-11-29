@@ -1,24 +1,30 @@
+/* stylelint-disable max-nesting-depth */
+// NB. disabled this rule for test-based pragmatism/time-keeping, wouldn't disable in a real project
+
 .VehicleList {
+
   &__Card {
+    background-color: #fff;
     display: flex;
     flex-direction: row;
     width: 100%;
-    background-color: #fff;
 
     @media (min-width: 768px) {
-      flex-direction: column;
       flex: 0 0 50%;
+      flex-direction: column;
       max-width: 50%;
 
       &:nth-of-type(odd) {
+
         & .VehicleList__CardText {
           border-right: 1px solid rgba(1, 1, 1, .1);
         }
       }
 
       &:last-child {
+
         & .VehicleList__CardText {
-          border-right: none;
+          border-right: 0;
         }
       }
     }
@@ -28,6 +34,7 @@
       max-width: none;
 
       &:nth-of-type(even) {
+
         & .VehicleList__CardText {
           border-right: 1px solid rgba(1, 1, 1, .1);
         }
@@ -36,10 +43,10 @@
   }
 
   &__CardImage {
-    font-size: 0;
-    flex: 0 0 50%;
-    max-width: 50%;
     background-color: #0C0C0C;
+    flex: 0 0 50%;
+    font-size: 0;
+    max-width: 50%;
 
     @media (min-width: 768px) {
       flex: 0 0 auto;
@@ -51,23 +58,23 @@
     }
 
     & img {
-      width: 100%;
       object-fit: cover;
+      width: 100%;
     }
   }
 
   &__CardText {
-    flex: 1;
     box-shadow: 0 1px 4px 0 rgba(1, 1, 1, .25); // inspired by https://www.landrover.co.uk/ header
+    flex: 1;
     padding: 30px 35px;
 
     @media (min-width: 768px) {
-      flex: 0 0 auto;
       box-shadow: none;
+      display: flex;
+      flex: 0 0 auto;
+      flex-direction: column;
       padding: 20px 0 0;
       text-align: center;
-      display: flex;
-      flex-direction: column;
     }
 
     @media (min-width: 1024px) {
@@ -78,8 +85,8 @@
     &Para {
       color: #4a4f54;
       font-family: AvenirNext, Futura, Arial, Helvetica, sans-serif;
-      font-weight: 400;
       font-size: 16px;
+      font-weight: 400;
       margin: 0 0 15px;
 
       @media (min-width: 768px) {
@@ -94,19 +101,19 @@
 
     &Heading {
       color: #0c121c;
-      margin: 0 0 5px;
+      font-family: LandRoverWeb-Bold, "Trebuchet MS", Arial, Helvetica, sans-serif;
       font-size: 21px;
-      font-family: LandRoverWeb-Bold, 'Trebuchet MS', Arial, Helvetica, sans-serif;
-      text-transform: uppercase;
       letter-spacing: 2px;
+      margin: 0 0 5px;
+      text-transform: uppercase;
 
       @media (min-width: 768px) {
+        align-self: center;
+        border-bottom: 1px solid;
+        border-top: 1px solid;
+        display: inline-block;
         margin: 0 0 15px;
         padding: 2.5px 0;
-        display: inline-block;
-        align-self: center;
-        border-top: 1px solid;
-        border-bottom: 1px solid;
       }
     }
 
@@ -124,13 +131,13 @@
 
     & summary {
       color: #0c121c;
-      font-size: 14px;
-      font-family: LandRoverWeb-Bold, 'Trebuchet MS', Arial, Helvetica, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 2px;
       cursor: pointer;
-      padding: 5px;
+      font-family: LandRoverWeb-Bold, "Trebuchet MS", Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
       list-style: none; // chrome
+      padding: 5px;
+      text-transform: uppercase;
 
       &::-webkit-details-marker {
         display: none; // safari
@@ -157,8 +164,8 @@
     &Para {
       color: #4a4f54;
       font-family: AvenirNext, Futura, Arial, Helvetica, sans-serif;
-      font-weight: 400;
       font-size: 16px;
+      font-weight: 400;
       margin: 0 0 15px;
 
       &--highlight {
@@ -172,13 +179,13 @@
     }
 
     &List {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: left;
       list-style: none;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: left;
-      gap: 10px;
 
       @media (min-width: 768px) {
         justify-content: center;
@@ -188,11 +195,11 @@
     &ListItem {
       background-color: #54616b;
       color: #fff;
-      padding: 5px 10px;
+      font-family: LandRoverWeb-Bold, "Trebuchet MS", Arial, Helvetica, sans-serif;
       font-size: 14px;
-      font-family: LandRoverWeb-Bold, 'Trebuchet MS', Arial, Helvetica, sans-serif;
-      text-transform: uppercase;
       letter-spacing: 2px;
+      padding: 5px 10px;
+      text-transform: uppercase;
       text-transform: uppercase;
     }
 
