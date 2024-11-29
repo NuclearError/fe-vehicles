@@ -1,6 +1,9 @@
 /* stylelint-disable max-nesting-depth */
 // NB. disabled this rule for test-based pragmatism/time-keeping, wouldn't disable in a real project
 
+$sm-breakpoint: 768px;
+$md-breakpoint: 1024px;
+
 .VehicleList {
 
   &__Card {
@@ -9,7 +12,7 @@
     flex-direction: row;
     width: 100%;
 
-    @media (min-width: 768px) {
+    @media (min-width: $sm-breakpoint) {
       flex: 0 0 50%;
       flex-direction: column;
       max-width: 50%;
@@ -29,7 +32,7 @@
       }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: $md-breakpoint) {
       flex: 1;
       max-width: none;
 
@@ -48,7 +51,7 @@
     font-size: 0;
     max-width: 50%;
 
-    @media (min-width: 768px) {
+    @media (min-width: $sm-breakpoint) {
       flex: 0 0 auto;
       max-width: 100%;
     }
@@ -68,7 +71,7 @@
     flex: 1;
     padding: 30px 35px;
 
-    @media (min-width: 768px) {
+    @media (min-width: $sm-breakpoint) {
       box-shadow: none;
       display: flex;
       flex: 0 0 auto;
@@ -77,7 +80,7 @@
       text-align: center;
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: $md-breakpoint) {
       padding: 25px 0 0;
     }
 
@@ -89,12 +92,12 @@
       font-weight: 400;
       margin: 0 0 15px;
 
-      @media (min-width: 768px) {
+      @media (min-width: $sm-breakpoint) {
         font-size: 12px;
         margin: 0 0 10px;
       }
 
-      @media (min-width: 1024px) {
+      @media (min-width: $md-breakpoint) {
         margin: 0 0 5px;
       }
     }
@@ -107,7 +110,7 @@
       margin: 0 0 5px;
       text-transform: uppercase;
 
-      @media (min-width: 768px) {
+      @media (min-width: $sm-breakpoint) {
         align-self: center;
         border-bottom: 1px solid;
         border-top: 1px solid;
@@ -148,7 +151,7 @@
         text-decoration: underline;
       }
 
-      @media (min-width: 768px) {
+      @media (min-width: $sm-breakpoint) {
         padding: 10px 0;
       }
     }
@@ -156,7 +159,7 @@
     &Content {
       padding: 5px 5px 10px;
 
-      @media (min-width: 768px) {
+      @media (min-width: $sm-breakpoint) {
         padding: 0 15px 10px;
       }
     }
@@ -172,7 +175,7 @@
         font-style: italic;
       }
 
-      @media (min-width: 768px) {
+      @media (min-width: $sm-breakpoint) {
         font-size: 12px;
         margin: 0 0 10px;
       }
@@ -187,7 +190,7 @@
       margin: 0;
       padding: 0;
 
-      @media (min-width: 768px) {
+      @media (min-width: $sm-breakpoint) {
         justify-content: center;
       }
     }
