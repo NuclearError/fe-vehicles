@@ -15,8 +15,6 @@ export const VehicleList = () => {
     return <div data-testid="error">{error}</div>;
   }
 
-  console.log('vehicles = ', vehicles);
-
   return !!vehicles &&
     <ul data-testid="results" className='VehicleList'>
       {vehicles.map(vehicle =>
