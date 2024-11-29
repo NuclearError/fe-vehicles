@@ -3,15 +3,15 @@ import './style.scss';
 
 export const CardImage = ({ id, modelYear }) => {
 
-  // TODO consider accessibility (alt tag is not necessarily the way to go, 
-  // depends if this is going to be an interactive element or not)
-  // - if image is going to be clickable, aria-label would be more appropriate 
-  // to describe what the click would achieve (similarly to labelling an anchor or button)
-  // TODO: if not makign this interactive, put aria-hidden on the parent div
+  /*
+    This element is aria-hidden (with no alt tag on the image)
+    because the image itself is not interactive and can be 
+    considered a 'decorative' element. Alt tags are best reserved 
+    for images which convey meaningful information that would otherwise
+    not be present in the rest of the DOM.
+  */
 
-  // TODO import breakpoints from somewhere centralised rather than hard coding
-
-  return <div data-testid={`cardImage-${id}`} className="VehicleList__CardImage">
+  return <div data-testid={`cardImage-${id}`} className="VehicleList__CardImage" aria-hidden>
     <picture>
       {/*
         In real circumstances we would likely use many source elements, 
