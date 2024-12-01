@@ -17,8 +17,8 @@ export const VehicleList = () => {
 
   return !!vehicles
     && (
-    <ul data-testid="results" className="VehicleList">
-      {vehicles.map((vehicle) => <Card key={`card-${vehicle.id}`} vehicle={vehicle} />)}
-    </ul>
+      <ul data-testid="results" className="VehicleList">
+        {vehicles.map((vehicle) => <Card key={`card-${vehicle.id}`} vehicle={vehicle} />)}
+      </ul>
     );
 };

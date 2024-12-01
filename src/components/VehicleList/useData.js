@@ -1,37 +1,18 @@
-import { useState, useEffect } from 'react';
-import { getData } from '../../api/getData';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchVehicles } from '../../store/';
 
 export const useData = () => {
-  const [vehicles, setVehicles] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const dispatch = useDispatch();
+  const { vehicles, status, error } = useSelector((state) => state);
 
   useEffect(() => {
-    let isMounted = true;
-    setLoading(true);
-    setError(null);
+    if (status === 'idle') {
+      dispatch(fetchVehicles());
+    }
+  }, [status, dispatch]);
 
-    getData()
-      .then((response) => {
-        if (isMounted) {
-          setVehicles(response);
-        }
-      })
-      .catch((err) => {
-        if (isMounted) {
-          setError(`Failed to fetch data: ${err.message || err}`);
-        }
-      })
-      .finally(() => {
-        if (isMounted) {
-          setLoading(false);
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const loading = status === 'loading';
 
   return [loading, error, vehicles];
 };
