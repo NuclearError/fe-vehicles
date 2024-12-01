@@ -47,9 +47,11 @@ $md-breakpoint: 1024px;
 
   &__CardImage {
     background-color: #0C0C0C;
+    border: 0;
     flex: 0 0 50%;
     font-size: 0;
     max-width: 50%;
+    padding: 0;
 
     @media (min-width: $sm-breakpoint) {
       flex: 0 0 auto;

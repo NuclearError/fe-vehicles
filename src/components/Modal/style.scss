@@ -4,18 +4,20 @@ $sm-breakpoint: 768px;
 $md-breakpoint: 1024px;
 
 .Modal {
+
   &__Background {
-    position: absolute;
-    top: 0;
+    animation: animationFrames ease-in-out .75s;
+
+    background-color: rgba(0, 0, 0, .5);
     bottom: 0;
     left: 0;
+    position: absolute;
     right: 0;
-
-    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
     z-index: 50;
-    animation: animationFrames ease-in-out 0.75s;
 
     @keyframes animationFrames {
+
       0% {
         opacity: 0;
       }
@@ -28,16 +30,16 @@ $md-breakpoint: 1024px;
 
   &__Body {
     background-color: #fff;
-    position: relative;
-    z-index: 100;
-    margin: 5% auto 0;
-    padding: 5px;
-    min-height: 100px;
-    max-width: 75%;
     box-shadow: 0px 12px 24px 0px #000;
-    transition: opacity 500ms ease-in-out;
     display: flex;
     flex-direction: row-reverse;
+    margin: 5% auto 0;
+    max-width: 75%;
+    min-height: 100px;
+    padding: 5px;
+    position: relative;
+    transition: opacity 500ms ease-in-out;
+    z-index: 100;
 
     @media (min-width: $md-breakpoint) {
       max-width: 50%;
@@ -45,16 +47,16 @@ $md-breakpoint: 1024px;
   }
 
   &__CloseButton {
-    flex: 0 0 40px;
     align-self: flex-start;
-    border: 0;
-    cursor: pointer;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40px' height='40px' viewbox='0 0 40 40'%3E%3Cpath d='M 10,10 L 30,30 M 30,10 L 10,30' stroke='black' stroke-width='4' stroke-linecap='butt' /%3E%3C/svg%3E");
     background-size: 100%;
-    width: 40px;
+    border: 0;
+    border: 3px solid #f8f9fa;
+    cursor: pointer;
+    flex: 0 0 40px;
     height: 40px;
     padding: 0;
-    border: 3px solid #f8f9fa;
+    width: 40px;
 
     &:hover,
     &:focus {
@@ -67,8 +69,8 @@ $md-breakpoint: 1024px;
   }
 
   &__Content {
-    width: 100%;
     padding: 10px;
+    width: 100%;
 
     & h3 {
       color: #0c121c;
@@ -84,8 +86,8 @@ $md-breakpoint: 1024px;
       font-family: AvenirNext, Futura, Arial, Helvetica, sans-serif;
       font-size: 16px;
       font-weight: 400;
-      margin: 0 0 15px;
       letter-spacing: 2px;
+      margin: 0 0 15px;
     }
   }
 

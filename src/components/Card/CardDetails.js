@@ -11,8 +11,10 @@ export const CardDetails = ({ description, bodystyles, emissions }) => {
   return (
     <details className="VehicleList__CardDetails" onToggle={handleToggle}>
       <summary
-        aria-label={isOpen ? `Hide additional information about this vehicle` : `Show additional information about this vehicle`}
-      >{isOpen ? 'Show less' : 'Show more'}</summary>
+        aria-label={isOpen ? 'Hide additional information about this vehicle' : 'Show additional information about this vehicle'}
+      >
+        {isOpen ? 'Show less' : 'Show more'}
+      </summary>
       <div className="VehicleList__CardDetailsContent">
         <p className="VehicleList__CardDetailsPara">{description}</p>
         <p className="VehicleList__CardDetailsPara VehicleList__CardDetailsPara--highlight">{emissions}</p>

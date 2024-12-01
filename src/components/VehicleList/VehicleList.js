@@ -31,10 +31,11 @@ export const VehicleList = () => {
 
   return (
     <>
-      {/* 
+      {/*
       NB. weird syntax to avoid the warning
       "Received `false` for a non-boolean attribute `inert`. If you want to write it to the DOM, pass a string instead"
       */}
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <section {...(isModalVisible ? { inert: '' } : {})}>
         {!!vehicles && (
           <ul data-testid="results" className="VehicleList">
@@ -47,7 +48,7 @@ export const VehicleList = () => {
             ))}
           </ul>
         )}
-      </section >
+      </section>
       {isModalVisible && (
         <Modal
           id="vehicle-modal"
@@ -62,8 +63,7 @@ export const VehicleList = () => {
             {selectedVehicle?.description || 'This is a default description that could work for any vehicle in the event that the description data is unavailable.'}
           </p>
         </Modal>
-      )
-      }
+      )}
     </>
   );
 };

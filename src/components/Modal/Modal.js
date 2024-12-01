@@ -1,9 +1,12 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+
+import React, {
+  useState, useEffect, useRef, useCallback
+} from 'react';
 
 import './style.scss';
 
-const focusableElementSelectors =
-  'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
+const focusableElementSelectors = 'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, object, embed, *[tabindex], *[contenteditable]';
 
 export const Modal = ({
   id,
@@ -26,10 +29,10 @@ export const Modal = ({
   useEffect(() => {
     if (modalRef.current) {
       const nodeList = modalRef.current.querySelectorAll(focusableElementSelectors);
-      const focusableElements = Array.from(nodeList);
-      setFocusableElements(focusableElements);
-      if (focusableElements.length > 0) {
-        focusableElements[0].focus(); // Focus on the first focusable element inside the modal
+      const focusableElementsList = Array.from(nodeList);
+      setFocusableElements(focusableElementsList);
+      if (focusableElementsList.length > 0) {
+        focusableElementsList[0].focus(); // Focus on the first focusable element inside the modal
       }
     }
     setAbilityToScroll(visible);
@@ -47,33 +50,42 @@ export const Modal = ({
     onCloseModal();
   }, [setAbilityToScroll]);
 
-  const handleKeyUp = useCallback((e) => {
+  const handleKeyUp = useCallback((event) => {
     const keyActions = {
       Tab: () => {
-        e.preventDefault();
-        const newPosition = e.shiftKey
+        event.preventDefault();
+        const newPosition = event.shiftKey
           ? (focusPosition - 1 + focusableElements.length) % focusableElements.length
           : (focusPosition + 1) % focusableElements.length;
         updateFocusState(newPosition);
       },
-      ArrowUp: (e) => {
-        e.preventDefault();
-        const newPosition =
-          (focusPosition - 1 + focusableElements.length) % focusableElements.length;
+      ArrowUp: () => {
+        event.preventDefault();
+        const newPosition = (focusPosition - 1 + focusableElements.length) % focusableElements.length;
         updateFocusState(newPosition);
       },
-      ArrowDown: (e) => {
-        e.preventDefault();
+      ArrowDown: () => {
+        event.preventDefault();
         const newPosition = (focusPosition + 1) % focusableElements.length;
         updateFocusState(newPosition);
       },
       Escape: closeModal,
     };
 
-    if (keyActions[e.key]) {
-      keyActions[e.key](e);
+    if (keyActions[event.key]) {
+      keyActions[event.key](event);
     }
   }, [focusPosition, focusableElements, updateFocusState, closeModal]);
+
+  useEffect(() => {
+    if (visible) {
+      document.addEventListener('keyup', handleKeyUp, true);
+    }
+
+    return () => {
+      document.removeEventListener('keyup', handleKeyUp, true);
+    };
+  }, [visible, handleKeyUp]);
 
   const onClickOutside = useCallback((event) => {
     if (!modalRef.current?.contains(event.target)) {
@@ -81,69 +93,17 @@ export const Modal = ({
     }
   }, [closeModal]);
 
-  /*
-  useEffect(() => {
-    // Store the focused element if the modal is visible initially
-    if (initialVisible) {
-      if (typeof document !== 'undefined') {
-        activeElementBeforeModal.current = document.activeElement;
-      }
-    }
-
-    // Toggle scrolling ability when the modal is opened
-    document.body.classList.toggle('body--overlayed', initialVisible);
-
-    // If modal is present, set up focusable elements
-    if (modalRef.current) {
-      const nodes = modalRef.current.querySelectorAll(focusableElementSelectors);
-      setFocusableElements(Array.from(nodes));
-      if (nodes.length > 0) {
-        nodes[0].focus();
-      }
-    }
-
-    // Attach event listeners for key handling
-    const keyUpHandler = (e) => {
-      const keyActions = {
-        Tab: () => {
-          e.preventDefault();
-          const newPosition = e.shiftKey
-            ? (focusPosition - 1 + focusableElements.length) % focusableElements.length
-            : (focusPosition + 1) % focusableElements.length;
-          setFocusPosition(newPosition);
-          focusableElements[newPosition]?.focus();
-        },
-        Escape: closeModal,
-      };
-
-      if (keyActions[e.key]) {
-        keyActions[e.key](e);
-      }
-    };
-
-    document.addEventListener('keyup', keyUpHandler, true);
-
-    // Cleanup
-    return () => {
-      document.removeEventListener('keyup', keyUpHandler, true);
-    };
-  }, [initialVisible, closeModal, focusPosition, focusableElements]);
-
-  useEffect(() => {
-    document.body.classList.toggle('body--overlayed', visible);
-  }, [visible]);
-*/
-
   if (!visible) {
     return null;
   }
 
   return (
-    <div className="Modal__Background" onClick={onClickOutside}>
+    <div className="Modal__Background" onClick={onClickOutside} role="presentation">
       <div
         id={id}
         className="Modal__Body"
         role="dialog"
+        aria-modal="true"
         aria-labelledby={labelledBy}
         aria-describedby={describedBy}
         ref={modalRef}
@@ -152,7 +112,6 @@ export const Modal = ({
         <div className="Modal__Content">
           {children}
         </div>
-
       </div>
     </div>
   );

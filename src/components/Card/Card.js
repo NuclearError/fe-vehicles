@@ -21,9 +21,8 @@ export const Card = ({ vehicle, onCardClick }) => {
         id={id}
         modelYear={modelYear}
         onClick={handleImageClick}
-        role="button"
-        aria-label={`Read more about ${media[0].name}`}
-        aria-haspopup
+        ariaLabel={`Read more about ${media[0].name}`}
+        ariaHaspopup
       />
       <div className="VehicleList__CardText">
         <Heading>{media[0].name}</Heading>
