@@ -6,14 +6,25 @@ import { Heading } from './Heading';
 import { Price } from './Price';
 import { CardDetails } from './CardDetails';
 
-export const Card = ({ vehicle }) => {
+export const Card = ({ vehicle, onCardClick }) => {
   const {
     id, modelYear, media, price, description, bodystyles, emissions
   } = vehicle;
 
+  const handleImageClick = () => {
+    onCardClick(vehicle);
+  };
+
   return (
     <li data-testid={`card-${id}`} className="VehicleList__Card">
-      <CardImage id={id} modelYear={modelYear} />
+      <CardImage
+        id={id}
+        modelYear={modelYear}
+        onClick={handleImageClick}
+        role="button"
+        aria-label={`Read more about ${media[0].name}`}
+        aria-haspopup
+      />
       <div className="VehicleList__CardText">
         <Heading>{media[0].name}</Heading>
         <Price price={price} />

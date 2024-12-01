@@ -3,7 +3,7 @@
 import React from 'react';
 import './style.scss';
 
-export const CardImage = ({ id, modelYear }) => {
+export const CardImage = ({ id, modelYear, ...rest }) => {
   /*
     This element is aria-hidden (with no alt tag on the image)
     because the image itself is not interactive and can be
@@ -13,8 +13,8 @@ export const CardImage = ({ id, modelYear }) => {
   */
 
   return (
-    <div data-testid={`cardImage-${id}`} className="VehicleList__CardImage" aria-hidden>
-      <picture>
+    <div data-testid={`cardImage-${id}`} className="VehicleList__CardImage" {...rest}>
+      <picture aria-hidden>
         {/*
         In real circumstances we would likely use many source elements,
         mapping over a range of images coming from a CDN
