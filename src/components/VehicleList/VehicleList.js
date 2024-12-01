@@ -62,7 +62,8 @@ export const VehicleList = () => {
           <p id="vehicle-modal-description">
             {selectedVehicle?.description || 'This is a default description that could work for any vehicle in the event that the description data is unavailable.'}
           </p>
-        </Modal>
+          <p>This paragraph contains arbitrary <a href="#">focusable HTML elements</a> in order to demonstrate <a href="#">keyboard navigation behaviour</a> within the modal itself.</p>
+        </Modal >
       )}
     </>
   );
